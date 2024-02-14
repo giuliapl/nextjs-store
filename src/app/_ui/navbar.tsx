@@ -30,7 +30,7 @@ function NavBar() {
   };
 
   return (
-    <AppBar className="navbar" elevation={0}>
+    <AppBar elevation={0}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box
@@ -38,37 +38,35 @@ function NavBar() {
               flexGrow: 1,
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             {/* MENU MOBILE VERSION */}
-            <>
-              <Box className="flex md:hidden">
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  disableScrollLock={true}
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                >
-                  {categories.map((page, index) => (
-                    <MenuItem key={index}>
-                      <Typography textAlign="center">{page}</Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-            </>
+            <Box className="flex md:hidden">
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                disableScrollLock={true}
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+              >
+                {categories.map((page, index) => (
+                  <MenuItem key={index}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
 
             <Typography
               variant="h6"
