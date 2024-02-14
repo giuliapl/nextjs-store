@@ -15,7 +15,7 @@ interface FavCardProps {
 
 export default function FavCard(props: FavCardProps) {
   return (
-    <Card variant="outlined" className="w-[50vh] sm:w-[38vh] md:w-[32vh]">
+    <Card variant="outlined">
       <CardOverflow>
         <AspectRatio ratio="1" sx={{ postion: "relative" }}>
           <Image

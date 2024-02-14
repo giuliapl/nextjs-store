@@ -13,7 +13,7 @@ export default async function Devices() {
 
   return (
     <>
-    <Box className="grid grid-cols-1 md:grid-cols-4 gap-x-2 gap-y-8">
+    <Box className="grid grid-cols-1 md:grid-cols-4 gap-8 m-8">
       {data &&
         data.products.map((product: Product) => (
           <Link key={product.id} href={product.description}>
