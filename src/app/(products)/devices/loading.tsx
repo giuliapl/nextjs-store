@@ -1,4 +1,5 @@
+import LoadingSkeleton from "@/app/_ui/LoadingSkeleton";
+
 export default function Loading() {
-    return <div>Loading...</div>;
+    return <LoadingSkeleton />
 }
-//todo
