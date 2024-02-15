@@ -5,12 +5,14 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import React from "react";
-import { IconButton, Menu, MenuItem } from "@mui/material";
+import React, { useContext } from "react";
+import { Badge, IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { CartContext } from "../_lib/CartContextProvider";
 
 function NavBar() {
+  const ctx = useContext(CartContext);
   const categories = [
     "Computer & Smartphone",
     "Foto",
@@ -22,6 +24,7 @@ function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
+
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -100,7 +103,13 @@ function NavBar() {
                 </Button>
               ))}
             </Box>
-            <ShoppingCartIcon />
+            <Badge
+              badgeContent={ctx?.cartCounter}
+              invisible={!ctx?.cartCounter}
+              color="success"
+            >
+              <ShoppingCartIcon />
+            </Badge>
           </Box>
         </Toolbar>
       </Container>

@@ -1,30 +1,51 @@
+"use client";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
 import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/joy/IconButton";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Grid } from "@mui/material";
 import { Product } from "../_api/products.model";
 import Image from "next/image";
+import { addItem } from "../_actions/addItem";
+import Link from "next/link";
+import { AddShoppingCartOutlined } from "@mui/icons-material";
+import { useContext } from "react";
+import { CartContext } from "../_lib/CartContextProvider";
 
 interface FavCardProps {
   product: Product;
 }
 
 export default function FavCard(props: FavCardProps) {
+  const ctx = useContext(CartContext);
+
   return (
-    <Card variant="outlined">
+    <Card
+      variant="outlined"
+      sx={{
+        "&:hover": {
+          cursor: "pointer",
+          transition: "transform .2s",
+          transform: "scale(1.07)",
+        },
+      }}
+    >
       <CardOverflow>
         <AspectRatio ratio="1" sx={{ postion: "relative" }}>
-          <Image
-            src={props.product.images[0]}
-            width={250}
-            height={250}
-            loading="lazy"
-            alt={props.product.title}
-          />
+          <Link
+            key={props.product.id}
+            href={`devices/${props.product.id}/details`}
+          >
+            <Image
+              src={props.product.images[0]}
+              width={250}
+              height={250}
+              loading="lazy"
+              alt={props.product.title}
+            />
+          </Link>
         </AspectRatio>
         <Grid
           container
@@ -43,8 +64,26 @@ export default function FavCard(props: FavCardProps) {
           </Grid>
 
           <Grid item xs={6} sx={{ display: "flex", justifyContent: "end" }}>
-            <IconButton aria-label="Add to favourites" size="md">
-              <StarBorderIcon fontSize={"large"} sx={{ color: "white" }} />
+            <IconButton
+              aria-label="Add to cart"
+              size="md"
+              sx={{
+                "&:hover": { backgroundColor: "#1976d2" },
+              }}
+              onClick={() => {
+                addItem(props.product);
+                const counter = ctx?.cartCounter;
+                ctx?.setCartCounter(
+                  counter !== null && counter !== undefined ? counter + 1 : 0
+                );
+              }}
+            >
+              <AddShoppingCartOutlined
+                fontSize={"large"}
+                sx={{
+                  color: "white",
+                }}
+              />
             </IconButton>
           </Grid>
         </Grid>
