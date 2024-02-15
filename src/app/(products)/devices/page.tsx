@@ -6,8 +6,7 @@ import Loading from "./loading";
 
 async function getData(): Promise<Products> {
   const data = await fetch("https://dummyjson.com/products");
-  // await new Promise((resolve) => setTimeout(resolve, 2000)); // simualte slow http request to see skeleton
-
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // this is just to simulate a slow http request
   return await data.json();
 }
 
