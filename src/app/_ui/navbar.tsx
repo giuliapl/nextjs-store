@@ -10,6 +10,8 @@ import { Badge, IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { CartContext } from "../_lib/CartContextProvider";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function NavBar() {
   const ctx = useContext(CartContext);
@@ -20,17 +22,18 @@ function NavBar() {
     "Audio",
     "Smart Home",
     "Offerte",
+    "Second Hand",
   ];
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
-
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+  const location = usePathname();
 
   return (
     <AppBar elevation={0}>
@@ -75,6 +78,7 @@ function NavBar() {
               variant="h6"
               noWrap
               component="a"
+              href="/devices"
               sx={{
                 ml: 2,
                 display: "flex",
@@ -103,13 +107,17 @@ function NavBar() {
                 </Button>
               ))}
             </Box>
-            <Badge
-              badgeContent={ctx?.cartCounter}
-              invisible={!ctx?.cartCounter}
-              color="success"
-            >
-              <ShoppingCartIcon />
-            </Badge>
+            <Link href={`cart`}>
+              {location !== "/cart" && (
+                <Badge
+                  badgeContent={ctx?.cartCounter}
+                  invisible={!ctx?.cartCounter}
+                  color="secondary"
+                >
+                  <ShoppingCartIcon />
+                </Badge>
+              )}
+            </Link>
           </Box>
         </Toolbar>
       </Container>

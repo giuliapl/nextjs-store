@@ -10,7 +10,7 @@ interface CartContextData {
 export const CartContext = createContext<CartContextData | null>(null);
 
 interface CartContextProviderProps {
-  children: JSX.Element[];
+  children: JSX.Element[] | JSX.Element;
 }
 function CartContextProvider(props: CartContextProviderProps) {
   const [cartCounter, setCartCounter] = useState<number>(0);

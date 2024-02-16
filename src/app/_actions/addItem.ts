@@ -25,7 +25,10 @@ export async function addItem(item: Product) {
     create: {
       userId: userId,
       productId: item.id,
-      quantity: 1
+      quantity: 1,
+      imgSrc: item.images[0],
+      title: item.title,
+      price: item.price,
     },
     update: {
       quantity: { increment: 1 }

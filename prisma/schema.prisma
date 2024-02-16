@@ -14,5 +14,8 @@ model Cart {
  productId Int
  userId String
  quantity Int
+ imgSrc String
+ title String
+ price Int
  @@id([productId, userId])
 }

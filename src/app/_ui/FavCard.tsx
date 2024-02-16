@@ -13,17 +13,19 @@ import Link from "next/link";
 import { AddShoppingCartOutlined } from "@mui/icons-material";
 import { useContext } from "react";
 import { CartContext } from "../_lib/CartContextProvider";
+import { SnackbarContenxt } from "../_lib/SnackBarProvider";
 
 interface FavCardProps {
   product: Product;
 }
 
 export default function FavCard(props: FavCardProps) {
-  const ctx = useContext(CartContext);
+  const cartCtx = useContext(CartContext);
+  const snackbarCtx = useContext(SnackbarContenxt);
 
   return (
     <Card
-      variant="outlined"
+      variant="soft"
       sx={{
         "&:hover": {
           cursor: "pointer",
@@ -72,10 +74,11 @@ export default function FavCard(props: FavCardProps) {
               }}
               onClick={() => {
                 addItem(props.product);
-                const counter = ctx?.cartCounter;
-                ctx?.setCartCounter(
+                const counter = cartCtx?.cartCounter;
+                cartCtx?.setCartCounter(
                   counter !== null && counter !== undefined ? counter + 1 : 0
                 );
+                snackbarCtx?.setState(true);
               }}
             >
               <AddShoppingCartOutlined

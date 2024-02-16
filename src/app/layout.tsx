@@ -5,6 +5,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import NavBar from "./_ui/NavBar";
 import { Box } from "@mui/material";
 import CartContextProvider from "./_lib/CartContextProvider";
+import SnackbarContextProvider from "./_lib/SnackBarProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,10 +23,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <CartContextProvider>
-          <NavBar />
-          <Box sx={{ marginTop: "6em" }}>
-            <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
-          </Box>
+          <SnackbarContextProvider>
+            <NavBar />
+            <Box sx={{ marginTop: "6em" }}>
+              <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+            </Box>
+          </SnackbarContextProvider>
         </CartContextProvider>
       </body>
     </html>
