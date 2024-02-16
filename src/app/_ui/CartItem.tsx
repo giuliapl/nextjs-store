@@ -8,7 +8,8 @@ import Image from "next/image";
 import { Box, Button } from "@mui/material";
 import { Cart } from "@prisma/client";
 import { removeItem } from "../_actions/removeItem";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../_lib/CartContextProvider";
 
 export interface CartItemProps {
   product: Cart;
@@ -16,10 +17,12 @@ export interface CartItemProps {
 
 export default function CartItem(props: CartItemProps) {
   const [quantity, setQuantity] = useState<number>(props.product.quantity);
+  const cartCtx = useContext(CartContext);
 
-  const handleRemove = () => {
-    removeItem(props.product);
+  const handleRemove = async () => {
+    await removeItem(props.product);
     setQuantity((prevQuantity) => prevQuantity - 1);
+    cartCtx?.decreaseCartSubtotal(props.product.price);
   };
   return (
     <>

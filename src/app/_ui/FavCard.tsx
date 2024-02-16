@@ -72,8 +72,8 @@ export default function FavCard(props: FavCardProps) {
               sx={{
                 "&:hover": { backgroundColor: "#1976d2" },
               }}
-              onClick={() => {
-                addItem(props.product);
+              onClick={async () => {
+                await addItem(props.product);
                 const counter = cartCtx?.cartCounter;
                 cartCtx?.setCartCounter(
                   counter !== null && counter !== undefined ? counter + 1 : 0
