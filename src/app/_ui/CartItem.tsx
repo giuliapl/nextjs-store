@@ -35,7 +35,8 @@ export default function CartItem(props: CartItemProps) {
         >
           <AspectRatio ratio="1" sx={{ width: 100, height: "100%" }}>
             <Image
-              layout="fill"
+              width={100}
+              height={100}
               src={props.product.imgSrc}
               loading="lazy"
               alt={props.product.title}
@@ -44,10 +45,12 @@ export default function CartItem(props: CartItemProps) {
 
           <CardContent className="flex !flex-row justify-between items-center">
             <Box className="flex flex-col justify-between h-[15vh]">
-              <Typography level="title-lg">{props.product.title}</Typography>
+              <Typography level="title-lg" aria-describedby="product-title">
+                {props.product.title}
+              </Typography>
               <Typography
                 level="body-sm"
-                aria-describedby="card-description"
+                aria-describedby="product-description"
                 mb={1}
               >
                 Qty {quantity}
@@ -55,7 +58,11 @@ export default function CartItem(props: CartItemProps) {
             </Box>
 
             <Box className="flex flex-col justify-between h-[15vh]">
-              <Typography level="title-lg" alignSelf={"center"}>
+              <Typography
+                level="title-lg"
+                aria-describedby="product-price"
+                alignSelf={"center"}
+              >
                 {props.product.price} €
               </Typography>
 

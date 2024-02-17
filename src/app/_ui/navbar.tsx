@@ -4,14 +4,13 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
 import React, { useContext } from "react";
 import { Badge, IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { CartContext } from "../_lib/CartContextProvider";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { Button } from "@mui/joy";
 
 function NavBar() {
   const ctx = useContext(CartContext);
@@ -34,6 +33,7 @@ function NavBar() {
     setAnchorElNav(null);
   };
   const location = usePathname();
+  const router = useRouter();
 
   return (
     <AppBar elevation={0}>
@@ -107,8 +107,8 @@ function NavBar() {
                 </Button>
               ))}
             </Box>
-            <Link href={`cart`}>
-              {location !== "/cart" && (
+            {location !== "/cart" && (
+              <Button onClick={() => router.push("/cart")}>
                 <Badge
                   badgeContent={ctx?.cartCounter}
                   invisible={!ctx?.cartCounter}
@@ -116,8 +116,8 @@ function NavBar() {
                 >
                   <ShoppingCartIcon />
                 </Badge>
-              )}
-            </Link>
+              </Button>
+            )}
           </Box>
         </Toolbar>
       </Container>

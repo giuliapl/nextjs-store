@@ -40,7 +40,9 @@ export default function Checkout(props: CheckoutProps) {
         Checkout
       </Button>
       <Box className="flex justify-center">
-        <Link>Continue Shopping</Link>
+        <Link href={`devices`} sx={{ cursor: "pointer" }}>
+          Continue Shopping
+        </Link>
       </Box>
     </Box>
   );

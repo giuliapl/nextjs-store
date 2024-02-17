@@ -7,7 +7,7 @@ interface SnackbarContextData {
   setState: (val: boolean) => void;
 }
 
-export const SnackbarContenxt = createContext<SnackbarContextData | null>(null);
+export const SnackbarContext = createContext<SnackbarContextData | null>(null);
 
 interface SnackbarContextProviderProps {
   children: JSX.Element[];
@@ -16,7 +16,7 @@ function SnackbarContextProvider(props: SnackbarContextProviderProps) {
   const [open, setOpen] = useState<boolean>(false);
 
   return (
-    <SnackbarContenxt.Provider
+    <SnackbarContext.Provider
       value={{
         state: open,
         setState: setOpen,
@@ -33,7 +33,7 @@ function SnackbarContextProvider(props: SnackbarContextProviderProps) {
         }}
         message="Success"
       />
-    </SnackbarContenxt.Provider>
+    </SnackbarContext.Provider>
   );
 }
 export default SnackbarContextProvider;

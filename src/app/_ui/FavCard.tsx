@@ -13,7 +13,7 @@ import Link from "next/link";
 import { AddShoppingCartOutlined } from "@mui/icons-material";
 import { useContext } from "react";
 import { CartContext } from "../_lib/CartContextProvider";
-import { SnackbarContenxt } from "../_lib/SnackBarProvider";
+import { SnackbarContext } from "../_lib/SnackBarProvider";
 
 interface FavCardProps {
   product: Product;
@@ -21,7 +21,7 @@ interface FavCardProps {
 
 export default function FavCard(props: FavCardProps) {
   const cartCtx = useContext(CartContext);
-  const snackbarCtx = useContext(SnackbarContenxt);
+  const snackbarCtx = useContext(SnackbarContext);
 
   return (
     <Card

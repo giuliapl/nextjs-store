@@ -21,7 +21,7 @@ function CartContextProvider(props: CartContextProviderProps) {
 
   const getItems = async () => {
     const items = await getCartItems();
-    if (!items) return;
+    if (!items || typeof items !== 'number') return;
     setCartCounter(items);
   };
 
@@ -39,7 +39,6 @@ function CartContextProvider(props: CartContextProviderProps) {
         cartSubtotal: subtotal,
         setCartSubtotal: setSubtotal,
         decreaseCartSubtotal: (val: number) => {
-          console.log(val);
           setSubtotal((prevSubtotal) => prevSubtotal - val);
         },
       }}
